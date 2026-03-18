@@ -7,7 +7,7 @@ class Booking(models.Model):
         "flights.Flight", on_delete=models.CASCADE, related_name="bookings"
     )
     customer = models.ForeignKey(
-        "customer.Customer", on_delete=models.CASCADE, related_name="bookings"
+        "customers.Customer", on_delete=models.CASCADE, related_name="bookings"
     )
 
     seat_number = models.PositiveIntegerField()
