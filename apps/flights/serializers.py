@@ -6,4 +6,4 @@ from .models import Flight
 class FlightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flight
-        fielsd = "__all__"
+        fields = "__all__"
