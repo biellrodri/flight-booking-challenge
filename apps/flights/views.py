@@ -1,7 +1,7 @@
 from rest_framework import viewsets
-from serializers import FlightSerializer
 
 from .models import Flight
+from .serializers import FlightSerializer
 
 
 class FlightViewSet(viewsets.ModelViewSet):

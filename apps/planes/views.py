@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import Plane
+from .serializers import PlaneSerializer
+
+
+class PlaneViewSet(viewsets.ModelViewSet):
+    queryset = Plane.objects.all()
+    serializer_class = PlaneSerializer
