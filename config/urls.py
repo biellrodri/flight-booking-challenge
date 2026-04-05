@@ -13,4 +13,8 @@ router.register(r"customers", CustomerViewSet)
 router.register(r"planes", PlaneViewSet)
 router.register(r"flights", FlightViewSet)
 
-urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls")),
+]
