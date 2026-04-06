@@ -1,0 +1,70 @@
+<style>
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .navbar-left,
+    .navbar-center,
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-center {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .navbar-right {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: darkblue;
+    }
+
+    .logout-form {
+        margin: 0;
+    }
+</style>
+
+<div class="navbar">
+
+    <div class="navbar-left">
+        <a href="/" class="btn"> Home</a>
+    </div>
+
+    <div class="navbar-center">
+        <h2>✈️ Sistema de Voos</h2>
+    </div>
+
+    <div class="navbar-right">
+        {% if user.is_authenticated %}
+            <a href="{% url 'my_bookings' %}" class="btn">Minhas Reservas</a>
+
+            <form action="/api-auth/logout/" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="btn">Logout</button>
+            </form>
+        {% else %}
+            <a href="/api-auth/login/" class="btn">Login</a>
+            <a href="/register/" class="btn">Cadastrar</a>
+        {% endif %}
+    </div>
+
+</div>
+
+<hr>

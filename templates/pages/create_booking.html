@@ -4,53 +4,55 @@
     <title>Reservar Voo</title>
 
     <style>
-        body { font-family: Arial; margin: 20px; }
+        body { font-family: Arial; margin: 20px; text-align: center; }
+
+        form {
+            display: inline-block;
+            text-align: left;
+        }
 
         input {
-            padding: 5px;
+            padding: 8px;
             margin: 5px;
+            width: 250px;
         }
 
         .btn {
             padding: 8px;
             background: blue;
             color: white;
+            border-radius: 8px;
             border: none;
         }
     </style>
 </head>
+
 <body>
 
-<h1>Reserva de Voo</h1>
+{% include "partials/navbar.html" %}
+
+<h1>Reserva</h1>
 
 <h3>{{ flight.origin }} → {{ flight.destination }}</h3>
 <p>{{ flight.departure_time }}</p>
 
 {% if error %}
-    <p style="color:red;">{{ error }}</p>
+<p style="color:red;">{{ error }}</p>
 {% endif %}
 
 <form method="POST">
     {% csrf_token %}
 
-    <h3>Passageiro</h3>
+    <label>Nome:</label><br>
+    <input type="text" name="name" required><br>
 
-    <label>Nome:</label>
-    <input type="text" name="name" required>
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br>
 
-    <br>
+    <label>Assento:</label><br>
+    <input type="number" name="seat_number" required><br><br>
 
-    <label>Email:</label>
-    <input type="email" name="email" required>
-
-    <br>
-
-    <label>Assento:</label>
-    <input type="number" name="seat_number" required>
-
-    <br><br>
-
-    <button type="submit" class="btn">Confirmar Reserva</button>
+    <button class="btn">Confirmar Reserva</button>
 </form>
 
 </body>

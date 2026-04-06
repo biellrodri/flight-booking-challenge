@@ -2,7 +2,12 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from apps.bookings.views import BookingViewSet, create_booking
+from apps.bookings.views import (
+    BookingViewSet,
+    create_booking,
+    delete_booking,
+    my_bookings,
+)
 from apps.customers.views import CustomerViewSet, create_customer, register_user
 from apps.flights.views import FlightViewSet, flights_list
 from apps.planes.views import PlaneViewSet
@@ -21,4 +26,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls")),
+    path("my_bookings/", my_bookings, name="my_bookings"),
+    path("delete-booking/<int:booking_id>/", delete_booking, name="delete_booking"),
 ]

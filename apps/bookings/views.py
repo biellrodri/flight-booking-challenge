@@ -51,3 +51,18 @@ def create_booking(request, flight_id):
         "pages/create_booking.html",
         {"flight": flight},
     )
+
+
+@login_required
+def my_bookings(request):
+    bookings = Booking.objects.filter(customer__user=request.user)
+
+    return render(request, "pages/my_bookings.html", {"bookings": bookings})
+
+
+@login_required
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, customer__user=request.user)
+
+    booking.delete()
+    return redirect("my_bookings")

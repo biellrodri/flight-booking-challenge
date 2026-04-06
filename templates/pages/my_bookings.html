@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minhas Reservas</title>
+
+    <style>
+        body { font-family: Arial; text-align: center; margin: 20px; }
+
+        table {
+            margin: auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-delete {
+            background: red;
+            color: white;
+            padding: 5px;
+            border-radius: 8px;
+        }
+    </style>
+
+    <script>
+        function confirmar() {
+            return confirm("Deseja cancelar essa reserva?");
+        }
+    </script>
+
+</head>
+
+<body>
+
+{% include "partials/navbar.html" %}
+
+<h1>Minhas Reservas</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Passageiro</th>
+            <th>Voo</th>
+            <th>Data</th>
+            <th>Assento</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.customer.name }}</td>
+            <td>{{ booking.flight.origin }} → {{ booking.flight.destination }}</td>
+            <td>{{ booking.flight.departure_time }}</td>
+            <td>{{ booking.seat_number }}</td>
+            <td>
+                <a href="{% url 'delete_booking' booking.id %}"
+                   onclick="return confirmar()"
+                   class="btn-delete">
+                    Cancelar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
