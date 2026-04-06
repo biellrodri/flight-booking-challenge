@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import viewsets
@@ -16,20 +17,24 @@ class BookingViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
+@login_required
 def create_booking(request, flight_id):
     flight = get_object_or_404(Flight, id=flight_id)
 
     if request.method == "POST":
-        customer_id = request.POST.get("customer")
+        name = request.POST.get("name")
+        email = request.POST.get("email")
         seat_number = int(request.POST.get("seat_number"))
 
-        customer = Customer.objects.get(id=customer_id)
+        customer, _ = Customer.objects.get_or_create(
+            user=request.user, email=email, defaults={"name": name}
+        )
 
         try:
             Booking.objects.create(
                 flight=flight, customer=customer, seat_number=seat_number
             )
-            return redirect("flight_list")
+            return redirect("flights_list")
 
         except ValidationError as e:
             return render(
@@ -37,7 +42,6 @@ def create_booking(request, flight_id):
                 "pages/create_booking.html",
                 {
                     "flight": flight,
-                    "customers": Customer.objects.all(),
                     "error": str(e),
                 },
             )
@@ -45,5 +49,5 @@ def create_booking(request, flight_id):
     return render(
         request,
         "pages/create_booking.html",
-        {"flight": flight, "customers": Customer.objects.all()},
+        {"flight": flight},
     )

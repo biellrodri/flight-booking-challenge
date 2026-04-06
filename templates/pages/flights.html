@@ -2,10 +2,39 @@
 <html>
 <head>
     <title>Destinos</title>
+
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a, .navbar button {
+            margin-left: 10px;
+            text-decoration: none;
+            padding: 6px 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar button:hover,
+        .navbar a:hover {
+            background-color: darkblue;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
@@ -21,9 +50,48 @@
         tr:hover {
             background-color: #f9f9f9;
         }
+
+        .btn {
+            padding: 5px 10px;
+            background-color: blue;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: darkblue;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- 🔹 NAVBAR -->
+    <div class="navbar">
+        <h2>✈️ Sistema de Voos</h2>
+
+        <div>
+            {% if user.is_authenticated %}
+                <span>Olá, {{ user.username }}</span>
+
+                <form action="/api-auth/logout/" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+
+            {% else %}
+                <a href="/api-auth/login/">Login</a>
+                <a href="/register/">Cadastrar</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr>
 
     <h1>Melhores Destinos</h1>
 
@@ -33,9 +101,10 @@
                 <th>Origem</th>
                 <th>Destino</th>
                 <th>Data</th>
-                <th>Ação</th>
+                <th>Reserve</th>
             </tr>
         </thead>
+
         <tbody>
             {% for flight in flights %}
             <tr>
@@ -43,7 +112,9 @@
                 <td>{{ flight.destination }}</td>
                 <td>{{ flight.departure_time }}</td>
                 <td>
-                    <a href="{% url 'create_booking' flight.id %}">Selecionar</a>
+                    <a href="{% url 'create_booking' flight.id %}" class="btn">
+                        Detalhes
+                    </a>
                 </td>
             </tr>
             {% empty %}
