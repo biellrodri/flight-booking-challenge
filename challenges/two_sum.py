@@ -20,6 +20,12 @@ Exemplo:
 
 
 def two_sum(nums, target):
+    """
+    Two Sum Problem
+
+    Given a list of integers and a target value,
+    return the indices of two numbers that sum up to the target.
+    """
     prev_nums = {}
 
     for i, num in enumerate(nums):
