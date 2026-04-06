@@ -5,23 +5,22 @@ from .models import Booking
 
 
 class BookingSerializer(serializers.ModelSerializer):
-    """
-    Serializer for Booking model.
-    """
-
-    def create(self, validated_data):
-        try:
-            return super().create(validated_data)
-        except DjangoValidationError as e:
-            raise serializers.ValidationError(e.message_dict)
-
-    def update(self, instance, validated_data):
-        try:
-            return super().update(instance, validated_data)
-        except DjangoValidationError as e:
-            raise serializers.ValidationError(e.message_dict)
-
     class Meta:
         model = Booking
         fields = "__all__"
-        validators = []
+
+    def validate(self, attrs):
+
+        instance = self.instance or Booking(**attrs)
+
+        for field, value in attrs.items():
+            setattr(instance, field, value)
+
+        try:
+
+            instance.full_clean()
+        except DjangoValidationError as e:
+
+            raise serializers.ValidationError(e.message_dict)
+
+        return attrs
