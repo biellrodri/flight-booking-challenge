@@ -87,9 +87,15 @@
             <td>{{ flight.destination }}</td>
             <td>{{ flight.departure_time }}</td>
             <td>
-                <a href="{% url 'create_booking' flight.id %}" class="btn">
-                    Detalhes
-                </a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'create_booking' flight.id %}" class="btn">
+                        Detalhes
+                    </a>
+                {% else %}
+                    <a href="/api-auth/login/?next={% url 'create_booking' flight.id %}" class="btn">
+                        Detalhes
+                    </a>
+                {% endif %}
             </td>
         </tr>
         {% empty %}
