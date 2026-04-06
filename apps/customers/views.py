@@ -31,6 +31,11 @@ def create_customer(request):
 
 
 def register_user(request):
+    """
+    Handle user registration.
+
+    Creates a new Django user with username and password.
+    """
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
