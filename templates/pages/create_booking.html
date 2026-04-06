@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservar</title>
+</head>
+<body>
+
+    <h1>Reserva de Voo</h1>
+
+    <h3>{{ flight.origin }} → {{ flight.destination }}</h3>
+    <p>Data: {{ flight.departure_time }}</p>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Passageiro: </label>
+        <select name="customer">
+            {% for customer in customers %}
+                <option value="{{ customer.id }}">{{ customer.name }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label>Número do assento:</label>
+        <input type="number" name="seat_number" required>
+
+        <br><br>
+
+        <button type="submit">Confirmar Reserva</button>
+    </form>
+
+</body>
+</html>
