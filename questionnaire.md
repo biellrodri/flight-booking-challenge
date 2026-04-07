@@ -31,14 +31,14 @@ A variable is a space in memory used to store data that can be used and modified
 
 ---
 
-## 🧠 Based on your code, which programming principle best defines you?
+## Based on your code, which programming principle best defines you?
 
 I focus on writing simple and clear code, prioritizing readability and testing different scenarios.  
 I try to solve problems with direct and maintainable solutions while ensuring the system behaves correctly in different situations.
 
 ---
 
-## 🧠 Describe a problem you have solved with programming and the biggest challenge involved.
+## Describe a problem you have solved with programming and the biggest challenge involved.
 
 During the ONE Hackathon, I worked on a project that involved integrating a backend built in Java with a data processing layer in Python for building an AI model.
 
