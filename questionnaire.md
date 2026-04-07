@@ -1,19 +1,19 @@
 # 📋 Questionnaire
 
-## 🧠 Which programming languages do you know?
+## Which programming languages do you know?
 
 I have experience with Python, which is the language I currently use the most for backend development, especially with the Django framework.
 
 ---
 
-## 🧠 Have you used Git?
+## Have you used Git?
 
 Yes, I frequently use Git in personal projects, studies, and team environments.  
 I apply good practices such as semantic commits, branch management, and version control.
 
 ---
 
-## 🧠 How would you explain a database to a non-technical person?
+## How would you explain a database to a non-technical person?
 
 I would explain it as an organized house.
 
@@ -25,7 +25,7 @@ Similarly, in a database, information is stored in an organized way and connecte
 
 ---
 
-## 🧠 What is a variable in programming?
+## What is a variable in programming?
 
 A variable is a space in memory used to store data that can be used and modified during program execution, such as numbers, text, or boolean values.
 
