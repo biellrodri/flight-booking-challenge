@@ -29,7 +29,7 @@ The system was designed focusing on real-world business rules, clean architectur
 ---
 
 ## 🏗️ Project Structure
-
+````
 flight-booking-challenge/
 │
 ├── apps/
@@ -58,7 +58,7 @@ flight-booking-challenge/
 ├── questionnaire.md
 ├── requirements.txt
 └── README.md
-
+````
 ---
 
 ## ⚙️ Setup Instructions
